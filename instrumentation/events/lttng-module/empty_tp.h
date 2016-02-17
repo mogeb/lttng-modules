@@ -8,8 +8,8 @@
 #define TRACE_SYSTEM empty_tp
 
 LTTNG_TRACEPOINT_EVENT(empty_ioctl_4b,
-			TP_PROTO(int payload),
-		TP_ARGS(payload),
+	TP_PROTO(int payload),
+	TP_ARGS(payload),
 
 	TP_FIELDS(
 		ctf_integer(int, payload, payload)
@@ -17,26 +17,41 @@ LTTNG_TRACEPOINT_EVENT(empty_ioctl_4b,
 )
 
 LTTNG_TRACEPOINT_EVENT(empty_ioctl_8b,
-			TP_PROTO(int p1, int p2),
-		TP_ARGS(p1, p2),
+	TP_PROTO(char payload[8]),
+	TP_ARGS(payload),
 
 	TP_FIELDS(
-		ctf_integer(int, p1, p1)
-		ctf_integer(int, p2, p2)
+		ctf_array(char, payload, payload, 8)
 	)
 )
 
 LTTNG_TRACEPOINT_EVENT(empty_ioctl_16b,
-			TP_PROTO(int p1, int p2, int p3, int p4),
-		TP_ARGS(p1, p2, p3, p4),
+	TP_PROTO(char payload[16]),
+	TP_ARGS(payload),
 
 	TP_FIELDS(
-		ctf_integer(int, p1, p1)
-		ctf_integer(int, p2, p2)
-		ctf_integer(int, p3, p3)
-		ctf_integer(int, p4, p4)
+		ctf_array(char, payload, payload, 16)
 	)
 )
+
+LTTNG_TRACEPOINT_EVENT(empty_ioctl_128b,
+	TP_PROTO(char payload[128]),
+	TP_ARGS(payload),
+
+	TP_FIELDS(
+		ctf_array(char, payload, payload, 128)
+	)
+)
+
+LTTNG_TRACEPOINT_EVENT(empty_ioctl_256b,
+	TP_PROTO(char payload[256]),
+	TP_ARGS(payload),
+
+	TP_FIELDS(
+		ctf_array(char, payload, payload, 256)
+	)
+)
+
 
 #endif /* LTTNG_TRACE_EMPTY_MOD_H */
 
