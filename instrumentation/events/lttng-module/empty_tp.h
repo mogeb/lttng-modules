@@ -34,12 +34,39 @@ LTTNG_TRACEPOINT_EVENT(empty_ioctl_16b,
 	)
 )
 
+LTTNG_TRACEPOINT_EVENT(empty_ioctl_32b,
+	TP_PROTO(char payload[32]),
+	TP_ARGS(payload),
+
+	TP_FIELDS(
+		ctf_array(char, payload, payload, 32)
+	)
+)
+
+LTTNG_TRACEPOINT_EVENT(empty_ioctl_64b,
+	TP_PROTO(char payload[64]),
+	TP_ARGS(payload),
+
+	TP_FIELDS(
+		ctf_array(char, payload, payload, 64)
+	)
+)
+
 LTTNG_TRACEPOINT_EVENT(empty_ioctl_128b,
 	TP_PROTO(char payload[128]),
 	TP_ARGS(payload),
 
 	TP_FIELDS(
 		ctf_array(char, payload, payload, 128)
+	)
+)
+
+LTTNG_TRACEPOINT_EVENT(empty_ioctl_192b,
+	TP_PROTO(char payload[192]),
+	TP_ARGS(payload),
+
+	TP_FIELDS(
+		ctf_array(char, payload, payload, 192)
 	)
 )
 
