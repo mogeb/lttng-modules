@@ -79,6 +79,18 @@ LTTNG_TRACEPOINT_EVENT(empty_ioctl_256b,
 	)
 )
 
+LTTNG_TRACEPOINT_EVENT(empty_ioctl_1kb,
+	TP_PROTO(char p1[SIZE_256B], char p2[SIZE_256B],
+			 char p3[SIZE_256B], char p4[SIZE_256B]),
+	TP_ARGS(p1, p2, p3, p4),
+
+	TP_FIELDS(
+		ctf_array(char, p1, p1, 256)
+		ctf_array(char, p2, p2, 256)
+		ctf_array(char, p3, p3, 256)
+		ctf_array(char, p4, p4, 256)
+	)
+)
 
 #endif /* LTTNG_TRACE_EMPTY_MOD_H */
 
