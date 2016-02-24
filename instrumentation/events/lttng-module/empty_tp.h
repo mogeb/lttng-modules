@@ -80,8 +80,8 @@ LTTNG_TRACEPOINT_EVENT(empty_ioctl_256b,
 )
 
 LTTNG_TRACEPOINT_EVENT(empty_ioctl_1kb,
-	TP_PROTO(char p1[SIZE_256B], char p2[SIZE_256B],
-			 char p3[SIZE_256B], char p4[SIZE_256B]),
+	TP_PROTO(char p1[256], char p2[256],
+			 char p3[256], char p4[256]),
 	TP_ARGS(p1, p2, p3, p4),
 
 	TP_FIELDS(
