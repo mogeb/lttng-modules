@@ -114,6 +114,40 @@ LTTNG_TRACEPOINT_EVENT(empty_ioctl_1kb,
 	)
 )
 
+LTTNG_TRACEPOINT_EVENT(empty_ioctl_1p5kb,
+	TP_PROTO(char p1[256], char p2[256],
+			 char p3[256], char p4[256],
+			 char p5[256], char p6[256]),
+	TP_ARGS(p1, p2, p3, p4, p5, p6),
+
+	TP_FIELDS(
+		ctf_array(char, p1, p1, 256)
+		ctf_array(char, p2, p2, 256)
+		ctf_array(char, p3, p3, 256)
+		ctf_array(char, p4, p4, 256)
+		ctf_array(char, p5, p5, 256)
+		ctf_array(char, p6, p6, 256)
+	)
+)
+
+LTTNG_TRACEPOINT_EVENT(empty_ioctl_2kb,
+	TP_PROTO(char p1[256], char p2[256],
+			 char p3[256], char p4[256],
+			 char p5[256], char p6[256],
+			 char p7[256], char p8[256]),
+	TP_ARGS(p1, p2, p3, p4, p5, p6, p7, p8),
+
+	TP_FIELDS(
+		ctf_array(char, p1, p1, 256)
+		ctf_array(char, p2, p2, 256)
+		ctf_array(char, p3, p3, 256)
+		ctf_array(char, p4, p4, 256)
+		ctf_array(char, p5, p5, 256)
+		ctf_array(char, p6, p6, 256)
+		ctf_array(char, p7, p7, 256)
+		ctf_array(char, p8, p8, 256)
+	)
+)
 #endif /* LTTNG_TRACE_EMPTY_MOD_H */
 
 /* This part must be outside protection */
