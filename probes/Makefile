@@ -19,6 +19,7 @@ obj-m += lttng-probe-timer.o
 obj-m += lttng-probe-kmem.o
 obj-m += lttng-probe-module.o
 obj-m += lttng-probe-power.o
+obj-m += lttng-probe-benchmod.o
 
 obj-m += lttng-probe-statedump.o
 
