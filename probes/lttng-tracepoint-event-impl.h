@@ -38,6 +38,8 @@
 
 #define __LTTNG_NULL_STRING	"(null)"
 
+#define __LTTNG_NULL_STRING	"(null)"
+
 /*
  * Macro declarations used for all stages.
  */
