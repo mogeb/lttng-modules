@@ -429,7 +429,8 @@ LTTNG_TRACEPOINT_EVENT(kvm_emulate_insn,
 		ctf_integer(__u8, len, vcpu->arch.emulate_ctxt.decode.eip
 				- vcpu->arch.emulate_ctxt.decode.fetch.start)
 		ctf_array(__u8, insn, vcpu->arch.emulate_ctxt.decode.fetch.data, 15)
-#elif (LINUX_VERSION_CODE < KERNEL_VERSION(3,17,0))
+#elif (LINUX_VERSION_CODE < KERNEL_VERSION(3,17,0) \
+    && !LTTNG_RHEL_KERNEL_RANGE(3,10,0,7,2, 3,11,0,0,0))
 		ctf_integer(__u64, rip, vcpu->arch.emulate_ctxt.fetch.start)
 		ctf_integer(__u32, csbase, kvm_x86_ops->get_segment_base(vcpu, VCPU_SREG_CS))
 		ctf_integer(__u8, len, vcpu->arch.emulate_ctxt._eip
