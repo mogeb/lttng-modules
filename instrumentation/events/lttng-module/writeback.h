@@ -14,15 +14,15 @@
 #define _TRACE_WRITEBACK_DEF_
 
 #if (LINUX_VERSION_CODE < KERNEL_VERSION(4,0,0))
-static inline struct backing_dev_info *inode_to_bdi(struct inode *inode)
-{
-	struct super_block *sb = inode->i_sb;
+//static inline struct backing_dev_info *inode_to_bdi(struct inode *inode)
+//{
+//	struct super_block *sb = inode->i_sb;
 
-	if (strcmp(sb->s_type->name, "bdev") == 0)
-		return inode->i_mapping->backing_dev_info;
+//	if (strcmp(sb->s_type->name, "bdev") == 0)
+//		return inode->i_mapping->backing_dev_info;
 
-	return sb->s_bdi;
-}
+//	return sb->s_bdi;
+//}
 #endif /* #if (LINUX_VERSION_CODE < KERNEL_VERSION(4,0,0)) */
 
 #endif

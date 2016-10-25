@@ -73,6 +73,17 @@ LTTNG_TRACEPOINT_EVENT(addons_elv_merge_requests,
 	)
 )
 
+LTTNG_TRACEPOINT_EVENT(addons_vcpu_enter_guest,
+    TP_PROTO(unsigned int vcpuID,ulong cr3tmp, unsigned long sptmp,unsigned long iptmp),
+    TP_ARGS(vcpuID,cr3tmp, sptmp, iptmp),
+    TP_FIELDS(
+	ctf_integer(unsigned int , vcpuID, vcpuID)
+        ctf_integer(ulong , cr3tmp, cr3tmp)
+	ctf_integer(unsigned long , sptmp, sptmp)
+	ctf_integer(unsigned long , iptmp, iptmp)
+    )
+)
+
 #endif /* LTTNG_ADDONS_H_ */
 
 /* This part must be outside protection */

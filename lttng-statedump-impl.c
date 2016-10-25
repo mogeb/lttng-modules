@@ -407,7 +407,7 @@ void lttng_statedump_process_ns(struct lttng_session *session,
 	proxy = p->nsproxy;
 #else
 	rcu_read_lock();
-	proxy = task_nsproxy(p);
+//	proxy = task_nsproxy(p);
 #endif
 	if (proxy) {
 		pid_ns = lttng_get_proxy_pid_ns(proxy);
