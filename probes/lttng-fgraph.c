@@ -51,9 +51,10 @@ static int (*register_ftrace_graph_sym)(trace_func_graph_ret_t retfunc,
 			trace_func_graph_ent_t entryfunc);
 static void (*unregister_ftrace_graph_sym)(void);
 static unsigned long parent_sym;
+static int tracing_thresh = 1000;
 
-static atomic_t entries = ATOMIC_INIT(0);
-static atomic_t returns = ATOMIC_INIT(0);
+//static atomic_t entries = ATOMIC_INIT(0);
+//static atomic_t returns = ATOMIC_INIT(0);
 
 // called by prepare_ftrace_return()
 // The corresponding return hook is called only when this function returns 1
@@ -84,9 +85,9 @@ int notrace lttng_fgraph_entry(struct ftrace_graph_ent *trace)
 		goto out;
 
 	// record event
-	trace_fgraph_entry(trace->func);
+//	trace_fgraph_entry(trace->func);
 	trace_clear_recursion(bit);
-	atomic_inc(&entries);
+//	atomic_inc(&entries);
 	ret = 1;
 out:
 	preempt_enable_notrace();
@@ -98,6 +99,9 @@ void notrace lttng_fgraph_return(struct ftrace_graph_ret *trace)
 {
 	int bit;
 
+    if ( (trace->rettime - trace->calltime) < tracing_thresh) {
+        return;
+    }
 	preempt_disable_notrace();
 	bit = trace_test_and_set_recursion(TRACE_FTRACE_START, TRACE_FTRACE_MAX);
 
@@ -105,9 +109,9 @@ void notrace lttng_fgraph_return(struct ftrace_graph_ret *trace)
 		goto out;
 
 	// record event
-	trace_fgraph_return(0);
+	trace_fgraph_return(trace->func, trace->calltime, trace->rettime);
 	trace_clear_recursion(bit);
-	atomic_inc(&returns);
+//	atomic_inc(&returns);
 out:
 	preempt_enable_notrace();
 	return;
@@ -157,8 +161,8 @@ static void __exit lttng_fgraph_exit(void)
 	synchronize_rcu();
 	__lttng_events_exit__fgraph();
 	printk("lttng-fgraph removed\n");
-	printk("entries=%d returns=%d\n", atomic_read(&entries),
-			atomic_read(&returns));
+//	printk("entries=%d returns=%d\n", atomic_read(&entries),
+//			atomic_read(&returns));
 }
 module_exit(lttng_fgraph_exit);
 
