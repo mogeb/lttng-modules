@@ -33,8 +33,6 @@
 #include <linux/list.h>
 #include <linux/preempt.h>
 
-#include "lttng-fgraph.h"
-
 #define TP_MODULE_NOAUTOLOAD
 #define LTTNG_PACKAGE_BUILD
 #define CREATE_TRACE_POINTS
@@ -51,7 +49,6 @@ static int (*register_ftrace_graph_sym)(trace_func_graph_ret_t retfunc,
 			trace_func_graph_ent_t entryfunc);
 static void (*unregister_ftrace_graph_sym)(void);
 static unsigned long parent_sym;
-static int tracing_thresh = 1000;
 
 //static atomic_t entries = ATOMIC_INIT(0);
 //static atomic_t returns = ATOMIC_INIT(0);
