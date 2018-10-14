@@ -49,6 +49,7 @@ static int (*register_ftrace_graph_sym)(trace_func_graph_ret_t retfunc,
 			trace_func_graph_ent_t entryfunc);
 static void (*unregister_ftrace_graph_sym)(void);
 static unsigned long parent_sym;
+static int _tracing_thresh = 1000;
 
 //static atomic_t entries = ATOMIC_INIT(0);
 //static atomic_t returns = ATOMIC_INIT(0);
@@ -96,7 +97,7 @@ void notrace lttng_fgraph_return(struct ftrace_graph_ret *trace)
 {
 	int bit;
 
-    if ( (trace->rettime - trace->calltime) < tracing_thresh) {
+    if ( (trace->rettime - trace->calltime) < _tracing_thresh) {
         return;
     }
 	preempt_disable_notrace();
